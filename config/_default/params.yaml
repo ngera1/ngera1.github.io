@@ -45,9 +45,9 @@ header:
 
 footer:
   copyright:
-    notice: '© 2023 NKG. This work is licensed under {license}'
+    notice: '© 2023 NKG.'
     license:
-      enable: true
+      enable: false
       allow_derivatives: false
       share_alike: true
       allow_commercial: false
