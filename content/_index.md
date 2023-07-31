@@ -60,27 +60,56 @@ sections:
   content:
     date_format: Jan 2006
     items:
-    - company: GenCoin
-      company_logo: org-gc
+    - company: Microsoft
+      company_logo: microsoft
       company_url: ""
       date_end: ""
-      date_start: "2021-01-01"
+      date_start: "2021-06-07"
       description: |2-
-          Responsibilities include:
-
-          * Analysing
-          * Modelling
-          * Deploying
-      location: California
-      title: CEO
-    - company: University X
-      company_logo: org-x
+        * Full-stack developer leading the revitalization of a web app crucial for connecting Windows builds to external partners (Dell, HP, etc.)
+        * Tech Stack: Angular front-end, .NET back-end, SQL database and querying
+        * Enabled cross-team connections with database management for more successful, higher-performance, lower latency back-end syncs, with over 2M+ API requests coming each day
+      location: Seattle, WA
+      title: Software Engineer
+    - company: Cornell University
+      company_logo: cornell
       company_url: ""
-      date_end: "2020-12-31"
-      date_start: "2016-01-01"
-      description: Taught electronic engineering and researched semiconductor physics.
-      location: California
-      title: Professor of Semiconductor Physics
+      date_end: "2021-05-05"
+      date_start: "2020-05-05"
+      description: |2-
+        * Added secure querying operations verifying object trust relationships in A Language of Secure Objects (ALSO), with practical applications in banking transactions and blockchain security
+        * Analyzed information flow control in the ALSO implementation of the game, A-MUD
+      location: Ithaca, NY
+      title: Undergrad Research - PL
+    - company: Cornell University
+      company_logo: cornell
+      company_url: ""
+      date_end: "2020-05-05"
+      date_start: "2020-01-01"
+      description: |2-
+        * Worked as a teaching consultant for CS 2110 (Object-Oriented Programming and Data Structures)
+        * Helped students on monthly CS projects and concepts through consulting hours
+        * Managed grading of projects, assignments, and exams
+      location: Ithaca, NY
+      title: CS 2110 Undergrad TA
+    - company: Cornell University
+      company_logo: cornell
+      company_url: ""
+      date_end: "2019-08-08"
+      date_start: "2019-05-05"
+      description: |2-
+        * Created an implemented a MATLAB script to analyze collagen fiber orientation around tumor spheroids using affine-filter-detectors, Fourier transforms, and Maximally Stable Extremal Regions (MSER)
+      location: Ithaca, NY
+      title: Undergrad Research - Computational Biology
+    - company: University of Toledo
+      company_logo: toledo
+      company_url: ""
+      date_end: "2018-08-08"
+      date_start: "2017-02-02"
+      description: |2-
+        * Developed a mathematical algorithm to track dynamic subcellular signaling by computing intensity-thresholded fluorescence compactness
+      location: Toledo, OH
+      title: High-School Research - Optogenetics
     title: Experience
   design:
     columns: "2"
@@ -88,32 +117,32 @@ sections:
   content:
     date_format: Jan 2006
     items:
-    - certificate_url: https://www.coursera.org
+    - certificate_url: https://www.credly.com/badges/9322d90c-33ba-4b59-9533-a6e756b98c31/linked_in_profile
       date_end: ""
-      date_start: "2021-01-25"
+      date_start: "2022-12-06"
       description: ""
-      organization: Coursera
-      organization_url: https://www.coursera.org
-      title: Neural Networks and Deep Learning
+      organization: The Microsoft Garage
+      organization_url: https://www.credly.com/org/microsoftgarage
+      title: Microsoft Global Hackathon 2022 Award Winner
       url: ""
-    - certificate_url: https://www.edx.org
+    - certificate_url: https://globalmentorship.org/mentorship-program/
       date_end: ""
-      date_start: "2021-01-01"
-      description: Formulated informed blockchain models, hypotheses, and use cases.
-      organization: edX
-      organization_url: https://www.edx.org
-      title: Blockchain Fundamentals
-      url: https://www.edx.org/professional-certificate/uc-berkeleyx-blockchain-fundamentals
-    - certificate_url: https://www.datacamp.com
-      date_end: "2020-12-21"
-      date_start: "2020-07-01"
-      description: ""
-      organization: DataCamp
-      organization_url: https://www.datacamp.com
-      title: Object-Oriented Programming in R
+      date_start: "2022-03-02"
+      description:
+      organization: Global Mentorship Initiative
+      organization_url: https://globalmentorship.org/
+      title: GMI Business Mentor
+      url:
+    - certificate_url: https://www.credly.com/badges/be8cc625-c32b-4c93-b6b6-2660d286aff7/linked_in_profile
+      date_end: ""
+      date_start: "2021-12-09"
+      description: "1st Place Winner of the 2021 Microsoft Global Hackathon, Hack for Industry Executive Challenge"
+      organization: The Microsoft Garage
+      organization_url: https://www.credly.com/org/microsoftgarage
+      title: Microsoft Global Hackathon 2021 Challenge Winner
       url: ""
     subtitle: null
-    title: Accomplish&shy;ments
+    title: Not&shy;able Cert&shy;ificates
   design:
     columns: "2"
 # - block: collection
