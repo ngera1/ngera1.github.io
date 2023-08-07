@@ -9,7 +9,7 @@
     {{ errorf "Check your `params.yaml`. Cannot find footer block at `layouts/partials/%s`" $footer_section_path }}
   {{ end }}
   {{ partial $footer_section_path . }}
-
+  <p>🍃 Powered by <a href="https://gohugo.io/">Hugo</a> with the <a href="https://themes.gohugo.io/themes/starter-hugo-academic/">Academic</a> theme</p>
   <!-- <p class="powered-by">
     {{ $is_sponsor := site.Params.i_am_a_sponsor | default false }}
     {{ $hide_published_with_footer := site.Params.power_ups.hide_published_with | default true }}
