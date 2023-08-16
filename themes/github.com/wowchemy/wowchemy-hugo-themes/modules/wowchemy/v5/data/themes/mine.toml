@@ -1,0 +1,16 @@
+# Theme metadata
+name = "Mine"
+
+[light]
+  # Primary
+  primary = "rgb(75, 26, 210)"
+
+  # Menu
+  menu_primary = "rgb(247, 247, 247)"
+  menu_text = "#000"
+  menu_text_active = "rgb(25, 25, 25)"
+  menu_title = "#000"
+
+  # Home sections
+  home_section_odd = "#FFF"
+  home_section_even = "rgb(244, 242, 249)"

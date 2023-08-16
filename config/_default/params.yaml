@@ -6,7 +6,7 @@
 # Appearance
 
 appearance:
-  theme_day: minimal
+  theme_day: mine
   theme_night: minimal
   font: minimal
   font_size: L
@@ -45,7 +45,7 @@ header:
 
 footer:
   copyright:
-    notice: '© 2023 NKG.'
+    notice: '© 2023 NKG. Thanks for visiting!'
     license:
       enable: false
       allow_derivatives: false

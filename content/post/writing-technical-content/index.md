@@ -1,10 +1,10 @@
 ---
-date: "2019-07-12"
+date: "2023-08-15"
 image:
   caption: 'Image credit: [**John Moeses Bauan**](https://unsplash.com/photos/OGZtQF8iC0g)'
   placement: 2
 math: true
-title: Writing technical content in Markdown
+title: \[Premade \ Content\] Writing technical content in Markdown
 ---
 
 Wowchemy is designed to give technical content creators a seamless experience. You can focus on the content and Wowchemy handles the rest.

@@ -12,14 +12,14 @@ education:
     institution: Cornell University
     year: 2021
 email: ""
-first_name: Alice
+first_name: Nora
 highlight_name: true
 interests:
 - Artificial Intelligence
 - Programming Language Design
 - Security
 - Computational Biology
-last_name: Wu
+last_name: Gera
 organizations:
 - name: Microsoft
   url: https://microsoft.com
@@ -49,8 +49,12 @@ social:
 status:
   icon: ☕️
 superuser: true
-title: Alice Wu 吳恩達
+title: Nora Gera
 ---
 
 I'm a Cornell University graduate interested in programming language design, security, and computational biology!
 {style="text-align: justify;"}
+
+<button id="id_reachout" onClick="showEmail();">Contact me!</button>
+<div id="email-button" style="display:none;"><a id="email-secret"></a></div>
+<script src="/js/button_click.js"></script>
