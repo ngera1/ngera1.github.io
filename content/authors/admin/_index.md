@@ -8,7 +8,7 @@ education:
   # - course: MEng in Artificial Intelligence
   #   institution: Massachusetts Institute of Technology
   #   year: 2009
-  - course: BSc in Computer Science, Minor in Biomedical Engineering
+  - course: BS in Computer Science, Minor in Biomedical Engineering (graduated summa cum laude)
     institution: Cornell University
     year: 2021
 email: ""
