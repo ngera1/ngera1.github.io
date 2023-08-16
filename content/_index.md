@@ -162,7 +162,7 @@ sections:
     order: desc
     subtitle: ""
     text: ""
-    title: ~posts~
+    title: ~posts (actual ones coming soon!)~
   design:
     columns: "2"
     view: compact
