@@ -1,0 +1,10 @@
+{{ $logo := resources.Get (printf "media/icons/brands/%s.svg" (.Get 0)) }}
+{{ if not $logo }}
+  {{ $logo = resources.Get (printf "media/%s.svg" (.Get 0)) }}
+{{ end }}
+{{ if $logo }}
+<img src="{{ $logo.RelPermalink }}" alt="{{ .Get 1 | default (.Get 0) }}" style="height: 1em; vertical-align: middle; display: inline-block; margin: 0 0.2em;">
+{{ else }}
+<span style="color: red;">[Logo {{ .Get 0 }} not found]</span>
+{{ end }}
+

@@ -35,23 +35,37 @@
       <div class="about-content">
         <div class="about-main">
           {{ $profile := resources.Get "media/profile.png" }}
-          {{ if .Site.Params.about }}
-            {{ range .Site.Params.about }}
-              {{ if .photo }}
-              <div class="about-photo">
-                <img src="{{ .photo }}" alt="{{ .title | default site.Title }}" class="profile-image">
-              </div>
-              {{ else if $profile }}
-              <div class="about-photo">
-                <img src="{{ $profile.RelPermalink }}" alt="{{ .title | default site.Title }}" class="profile-image">
-              </div>
-              {{ end }}
+          {{ $cornellSeal := resources.Get "media/cornell-seal.png" }}
+          {{ $microsoftLogo := resources.Get "media/microsoft-png.png" }}
+          <div class="about-photo-section">
+            {{ if $cornellSeal }}
+            <div class="institution-logos">
+              <img src="{{ $cornellSeal.RelPermalink }}" alt="Cornell" class="institution-logo">
+            </div>
             {{ end }}
-          {{ else if $profile }}
-          <div class="about-photo">
-            <img src="{{ $profile.RelPermalink }}" alt="{{ site.Title }}" class="profile-image">
+            {{ if .Site.Params.about }}
+              {{ range .Site.Params.about }}
+                {{ if .photo }}
+                <div class="about-photo">
+                  <img src="{{ .photo }}" alt="{{ .title | default site.Title }}" class="profile-image">
+                </div>
+                {{ else if $profile }}
+                <div class="about-photo">
+                  <img src="{{ $profile.RelPermalink }}" alt="{{ .title | default site.Title }}" class="profile-image">
+                </div>
+                {{ end }}
+              {{ end }}
+            {{ else if $profile }}
+            <div class="about-photo">
+              <img src="{{ $profile.RelPermalink }}" alt="{{ site.Title }}" class="profile-image">
+            </div>
+            {{ end }}
+            {{ if $microsoftLogo }}
+            <div class="institution-logos">
+              <img src="{{ $microsoftLogo.RelPermalink }}" alt="Microsoft" class="institution-logo">
+            </div>
+            {{ end }}
           </div>
-          {{ end }}
           {{ if .Content }}
             <div class="content">
               {{ .Content }}
