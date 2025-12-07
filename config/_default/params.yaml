@@ -1,116 +1,89 @@
-# SITE SETUP
-# Guide: https://wowchemy.com/docs/getting-started/
-# Documentation: https://wowchemy.com/docs/
-# This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
+# Site parameters
 
 # Appearance
-
 appearance:
-  theme_day: mine
-  theme_night: minimal
-  font: minimal
-  font_size: L
-
-# SEO
-
-marketing:
-  seo:
-    site_type: Person
-    local_business_type: ''
-    org_name: ''
-    description: "Nora's personal site"
-    twitter: 'wowchemy'
-  analytics:
-    google_analytics: ''
-    baidu_tongji: ''
-    google_tag_manager: ''
-    microsoft_clarity: ''  
-  verification:
-    google: ''
-    baidu: ''
+  theme_day: light
+  theme_night: dark
 
 # Site header
-
 header:
   navbar:
     enable: true
-    align: l
-    show_logo: true
-    show_language: false
     show_day_night: true
-    show_search: false
-    highlight_active_link: true
 
-# Site footer
+# Dark mode toggle
+darkMode:
+  enable: true
+  default: false
 
-footer:
-  copyright:
-    notice: '© 2023 NKG.'
-    license:
-      enable: false
-      allow_derivatives: false
-      share_alike: true
-      allow_commercial: false
 
-# Localization
+# Social links
+social:
+  github: "https://github.com/ngera1"
+  linkedin: "https://www.linkedin.com/in/nora-gera/"
+  email: "nkg29@cornell.edu"
 
-locale:
-  date_format: 'Jan 2, 2006'
-  time_format: '3:04 PM'
-  address_format: en-us
+# Hobbies section (expandable via sparkle icon)
+hobbies:
+  title: "More About Me"
+  description: "I enjoy reading a good book, exploring libraries on campus, and swimming. I also like to play the violin (my two favorite concert experiences are playing in Bailey Hall and Carnegie Hall), and there are wonderful concerts happening throughout the semester!"
+  photo: "carnegie.jpeg"
 
-# Site features
+# Experience section (commented out for now)
+# experience:
+#   - title: "Software Engineer"
+#     company: "Microsoft"
+#     date_start: "2021-06-07"
+#     date_end: ""
+#     location: "Seattle, WA"
+#     description: |
+#       * Full-stack developer leading the revitalization of a web app crucial for connecting Windows builds to external partners (Dell, HP, etc.)
+#       * Tech Stack: Angular front-end, .NET back-end, SQL database and querying
+#       * Enabled cross-team connections with database management for more successful, higher-performance, lower latency back-end syncs, with over 2M+ API requests coming each day
+#   - title: "Undergrad Research - PL"
+#     company: "Cornell University"
+#     date_start: "2020-05-05"
+#     date_end: "2021-05-05"
+#     location: "Ithaca, NY"
+#     description: |
+#       * Added secure querying operations verifying object trust relationships in A Language of Secure Objects (ALSO), with practical applications in banking transactions and blockchain security
+#       * Analyzed information flow control in the ALSO implementation of the game, A-MUD
+#   - title: "CS 2110 Undergrad TA"
+#     company: "Cornell University"
+#     date_start: "2020-01-01"
+#     date_end: "2020-05-05"
+#     location: "Ithaca, NY"
+#     description: |
+#       * Worked as a teaching consultant for CS 2110 (Object-Oriented Programming and Data Structures)
+#       * Helped students on monthly CS projects and concepts through consulting hours
+#       * Managed grading of projects, assignments, and exams
+#   - title: "Undergrad Research - Computational Biology"
+#     company: "Cornell University"
+#     date_start: "2019-05-05"
+#     date_end: "2019-08-08"
+#     location: "Ithaca, NY"
+#     description: |
+#       * Created an implemented a MATLAB script to analyze collagen fiber orientation around tumor spheroids using affine-filter-detectors, Fourier transforms, and Maximally Stable Extremal Regions (MSER)
+#   - title: "High-School Research - Optogenetics"
+#     company: "University of Toledo"
+#     date_start: "2017-02-02"
+#     date_end: "2018-08-08"
+#     location: "Toledo, OH"
+#     description: |
+#       * Developed a mathematical algorithm to track dynamic subcellular signaling by computing intensity-thresholded fluorescence compactness
 
-features:
-  syntax_highlighter:
-    theme_light: github-light
-    theme_dark: dracula
-  math:
-    enable: true
-  privacy_pack:
-    enable: false
-  repository:
-    url: 'https://github.com/<username>/<repository>'
-    content_dir: content
-    branch: main
-  avatar:
-    gravatar: false
-    shape: circle
-  comment:
-    provider: ''
-    disqus:
-      shortname: ''
-      show_count: true
-    commento:
-      url: ''
-    giscus:
-      repo: ''
-      repo_id: ''
-      category: ''
-      category_id: ''
-  search:
-    provider: wowchemy
-    algolia:
-      app_id: ''
-      api_key: ''
-      index_name: ''
-      show_logo: false
-  map:
-    provider: ''
-    api_key: ''
-    zoom: 15
+# News section
+news:
+  - date: "2025-11-24"
+    text: "Honored to be in the [Cornell Spotlight](https://gradschool.cornell.edu/spotlights/student-spotlight-nora-gera/)"
+  - date: "2025-11-10"
+    text: "Excited to share my paper '[Testing for racial bias using inconsistent perceptions of race](https://www.science.org/doi/10.1126/sciadv.adx5829)' was published in Science Advances!"
 
-# Extensions
 
-extensions:
-  cms:
-    branch: main
-    local_backend: false
-  academicons:
-    enable: true
-
-# Security
-
-security:
-  # Allow frame for embedding speaker notes in slides
-  allow_frame: true
+# Publications section
+publications:
+  - authors: "Nora Gera, Emma Pierson"
+    title: "Testing for racial bias using inconsistent perceptions of race"
+    journal: "Science Advances"
+    year: "2025"
+    doi: "https://www.science.org/doi/10.1126/sciadv.adx5829"

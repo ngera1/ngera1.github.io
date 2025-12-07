@@ -1,0 +1,185 @@
+{{ define "main" }}
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="#about" class="nav-brand">{{ site.Title }}</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#news">News</a>
+      <a href="#publications">Publications</a>
+      {{ if .Site.Params.darkMode.enable }}
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <svg class="theme-icon theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="theme-icon theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+      {{ end }}
+    </div>
+  </div>
+</nav>
+
+<main class="single-page">
+  <section id="about" class="section about-section">
+    <div class="container">
+      <h1 class="section-title">About Me</h1>
+      <div class="about-content">
+        <div class="about-main">
+          {{ $profile := resources.Get "media/profile.png" }}
+          {{ if .Site.Params.about }}
+            {{ range .Site.Params.about }}
+              {{ if .photo }}
+              <div class="about-photo">
+                <img src="{{ .photo }}" alt="{{ .title | default site.Title }}" class="profile-image">
+              </div>
+              {{ else if $profile }}
+              <div class="about-photo">
+                <img src="{{ $profile.RelPermalink }}" alt="{{ .title | default site.Title }}" class="profile-image">
+              </div>
+              {{ end }}
+            {{ end }}
+          {{ else if $profile }}
+          <div class="about-photo">
+            <img src="{{ $profile.RelPermalink }}" alt="{{ site.Title }}" class="profile-image">
+          </div>
+          {{ end }}
+          {{ if .Content }}
+            <div class="content">
+              {{ .Content }}
+            </div>
+          {{ else if .Site.Params.about }}
+            {{ range .Site.Params.about }}
+              {{ if .title }}<h2>{{ .title }}</h2>{{ end }}
+              {{ if .bio }}<p class="bio">{{ .bio }}</p>{{ end }}
+              {{ if .description }}<div class="description">{{ .description | markdownify }}</div>{{ end }}
+            {{ end }}
+          {{ end }}
+        </div>
+        {{ if .Site.Params.social }}
+        <div class="social-links">
+          {{ if .Site.Params.social.github }}
+          <a href="{{ .Site.Params.social.github }}" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+          </a>
+          {{ end }}
+          {{ if .Site.Params.social.linkedin }}
+          <a href="{{ .Site.Params.social.linkedin }}" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+          {{ end }}
+          {{ if .Site.Params.social.email }}
+          <a href="mailto:{{ .Site.Params.social.email }}" class="social-link" aria-label="Email">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </a>
+          {{ end }}
+          <button class="social-link sparkle-toggle" onclick="toggleHobbies()" aria-label="More about me">
+            <span class="sparkle-icon">✨</span>
+          </button>
+        </div>
+        {{ end }}
+        
+        {{/* Expandable hobbies section */}}
+        {{ if .Site.Params.hobbies }}
+        <div id="hobbies-section" class="hobbies-section" style="display: none;">
+          <div class="hobbies-content">
+            {{ if .Site.Params.hobbies.title }}<h3>{{ .Site.Params.hobbies.title }}</h3>{{ end }}
+            {{ if .Site.Params.hobbies.description }}<p class="hobbies-description">{{ .Site.Params.hobbies.description }}</p>{{ end }}
+            
+            {{ if .Site.Params.hobbies.photo }}
+            {{ $hobbyPhoto := resources.Get (printf "media/%s" .Site.Params.hobbies.photo) }}
+            {{ if $hobbyPhoto }}
+            <div class="hobby-photo">
+              <img src="{{ $hobbyPhoto.RelPermalink }}" alt="{{ .Site.Params.hobbies.title | default "Photo" }}" loading="lazy">
+            </div>
+            {{ end }}
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  {{/* Experience section - commented out for now
+  <section id="experience" class="section">
+    <div class="container">
+      <h1 class="section-title">Experience</h1>
+      <div class="experience-list">
+        {{ range .Site.Params.experience }}
+        <div class="experience-item">
+          <div class="experience-header">
+            <h3>{{ .title }}</h3>
+            <span class="experience-company">{{ .company }}</span>
+            <span class="experience-date">{{ .date_start }} - {{ if .date_end }}{{ .date_end }}{{ else }}Present{{ end }}</span>
+          </div>
+          {{ if .location }}<p class="experience-location">{{ .location }}</p>{{ end }}
+          {{ if .description }}<div class="experience-description">{{ .description | markdownify }}</div>{{ end }}
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  */}}
+
+  <section id="news" class="section">
+    <div class="container">
+      <h1 class="section-title">News</h1>
+      <div class="news-list">
+        <ul>
+          {{ range .Site.Params.news }}
+          <li class="news-item">
+            {{ if .date }}<span class="news-date">{{ .date }}</span> {{ end }}{{ .text | markdownify }}
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="publications" class="section">
+    <div class="container">
+      <h1 class="section-title">Publications</h1>
+      <div class="publications-list">
+        <ol>
+          {{ range .Site.Params.publications }}
+          <li class="publication-item">
+            <div class="publication-content">
+              {{ if .authors }}<span class="publication-authors">{{ .authors }}</span>{{ end }}
+              {{ if .title }}<span class="publication-title">{{ .title }}</span>{{ end }}
+              {{ if .journal }}<span class="publication-journal">{{ .journal }}</span>{{ end }}
+              {{ if .year }}<span class="publication-year">({{ .year }})</span>{{ end }}
+              {{ if .doi }}<a href="{{ .doi }}" class="publication-link" target="_blank" rel="noopener noreferrer">DOI</a>{{ end }}
+            </div>
+          </li>
+          {{ end }}
+        </ol>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>&copy; {{ now.Year }} {{ site.Title }}. All rights reserved.</p>
+  </div>
+</footer>
+{{ end }}
+
