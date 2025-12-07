@@ -1,7 +1,11 @@
 {{ define "main" }}
 <nav class="navbar">
   <div class="nav-container">
-    <a href="#about" class="nav-brand">{{ site.Title }}</a>
+    <a href="#about" class="nav-brand">
+      <span class="nav-title-full">Nora Gera</span>
+      <span class="nav-title-short">NG</span>
+      <span class="nav-title-suffix"> (PhD Student)</span>
+    </a>
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#news">News</a>
@@ -31,7 +35,7 @@
 <main class="single-page">
   <section id="about" class="section about-section">
     <div class="container">
-      <h1 class="section-title">About Me</h1>
+      <h1 class="section-title">Nora Gera</h1>
       <div class="about-content">
         <div class="about-main">
           {{ $profile := resources.Get "media/profile.png" }}
@@ -161,6 +165,50 @@
           </div>
         </div>
         {{ end }}
+        
+        {{/* Projects section with dropdowns */}}
+        {{ if .Site.Params.projects }}
+        <h3 class="project-title">Past Research & Work</h3>
+        <div class="projects-section">
+          {{ range .Site.Params.projects }}
+          <div class="project-item">
+            <button class="project-toggle" onclick="toggleProject(this)" aria-expanded="false">
+              <div class="project-header-content">
+                <span class="project-title">{{ .title }}</span>
+                {{ if .collaborator }}<span class="project-collaborator-subtitle">Collaboration with {{ .collaborator | markdownify }}</span>{{ end }}
+              </div>
+              <span class="project-arrow">▼</span>
+            </button>
+            <div class="project-content" style="display: none;">
+              {{ $projectTitle := .title }}
+              {{ if .description }}<p class="project-description">{{ .description | markdownify }}</p>{{ end }}
+              {{ if .images }}
+              <div class="project-images">
+                {{ range .images }}
+                {{ $projectImage := resources.Get (printf "media/%s" .) }}
+                {{ if $projectImage }}
+                <div class="project-image">
+                  <img src="{{ $projectImage.RelPermalink }}" alt="{{ $projectTitle }}" loading="lazy">
+                </div>
+                {{ end }}
+                {{ end }}
+              </div>
+              {{ else if .image }}
+              {{/* Support legacy single image field for backwards compatibility */}}
+              {{ $projectImage := resources.Get (printf "media/%s" .image) }}
+              {{ if $projectImage }}
+              <div class="project-images">
+                <div class="project-image">
+                  <img src="{{ $projectImage.RelPermalink }}" alt="{{ .title }}" loading="lazy">
+                </div>
+              </div>
+              {{ end }}
+              {{ end }}
+            </div>
+          </div>
+          {{ end }}
+        </div>
+        {{ end }}
       </div>
     </div>
   </section>
@@ -225,7 +273,7 @@
 
 <footer class="footer">
   <div class="container">
-    <p>&copy; {{ now.Year }} {{ site.Title }}. All rights reserved.</p>
+    <p>&copy; {{ now.Year }} Nora Gera. All rights reserved.</p>
   </div>
 </footer>
 {{ end }}

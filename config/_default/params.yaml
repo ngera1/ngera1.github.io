@@ -87,3 +87,28 @@ publications:
     journal: "Science Advances"
     year: "2025"
     doi: "https://www.science.org/doi/10.1126/sciadv.adx5829"
+
+# Projects section (dropdowns in about section)
+projects:
+  - title: "Creating a new statistical test for racial bias"
+    collaborator: "Prof. [Emma Pierson](https://people.eecs.berkeley.edu/~emmapierson/)"
+    description: "We developed a new test for racial bias using perceived race and multiple observations of the same person. Tests for racial bias typically compare different individuals, making it hard to isolate race as the cause of different treatment. Perceived identity traits, like race, can vary per interaction, so our approach examines whether a person is treated differently depending on their perceived race. Applying this to police traffic stops across three states, we find drivers perceived as Hispanic are more likely to be searched or arrested than when perceived as white. Beyond assessing racial bias, this test can apply to other perceived-identity analyses. Paper [published in Science Advances](https://www.science.org/doi/10.1126/sciadv.adx5829) and highlighted in the [Cornell Spotlight](https://gradschool.cornell.edu/spotlights/student-spotlight-nora-gera/)."
+    images:
+      - "test-bias-1.png"
+      - "test-bias-2.png"
+  - title: "Adding secure querying operations to A Language of Secure Objects (ALSO)"
+    collaborator: "Prof. [Andrew Myers](https://www.cs.cornell.edu/andru/)"
+    description: "I added secure querying operations verifying object trust relationships in A Language of Secure Objects (ALSO), applicable in crypto and banking transactions, and analyzed information flow control in the ALSO implementation of the game, A-MUD. Final report available on request."
+    images:
+      - "amud.png"
+      - "amud-2.png"
+  - title: "Creating a MATLAB imaging pipeline for collagen fiber orientation in tumor spheroids"
+    collaborator: "Prof. [Steven Adie](https://adie.research.engineering.cornell.edu/)"
+    description: "I implemented a MATLAB script to analyze collagen fiber orientation around tumor spheroids using affine-filter-detectors, Fourier transforms, and Maximally Stable Extremal Regions (MSER)."
+    image: "collagen.gif"
+  - title: "Designing an algorithm to track dynamic subcellular signaling in optogenetics"
+    collaborator: "Prof. Ajith Karunarathne"
+    description: "I designed, executed, and measured fluorescent output by optically stimulated macrophages, using a MATLAB script. This work was awarded a third-place recognition in Biomedical, Bioengineering, and Molecular Biology sciences at the National Junior Science and Humanities Symposium in Huntsville, Maryland (May 2018)."
+    images:
+      - "opto.gif"
+      - "opto.png"

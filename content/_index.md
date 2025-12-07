@@ -9,7 +9,7 @@ Hi! I'm Nora, a second-year CS PhD student at Cornell University. When I started
 My research interests include improving AI/ML algorithms, through the lens of performance, fairness, and interpretability. Specifically, I'm interested in studying LLM-based mechanisms of automation and the implications on robustness and performance.
 
 
-Before graduate school, I worked for two years as a full-stack-developer at Microsoft after graduating from Cornell with a Bachelor of Science degree in Computer Science + minor in Biomedical Engineering.
+Before graduate school, I worked for two years as a full-stack developer at Microsoft after graduating from Cornell with a Bachelor of Science degree in Computer Science + minor in Biomedical Engineering.
 
 My hobbies include reading and playing violin (click ✨ for details!).
 
