@@ -13,4 +13,4 @@ Before graduate school, I worked for two years as a full-stack developer at Micr
 
 My hobbies include reading and playing violin (click ✨ for details!).
 
-My CV is available [here](https://drive.google.com/file/d/1PjAAAZn5kl0D3RK_9RwVZT7ChPb3p5rM/view?usp=sharing).
+My CV is available [here](https://drive.google.com/file/d/1x3z0FprDbJLsiDIC1L0PnLnOzPz3S9BT/view?usp=sharing).

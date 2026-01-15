@@ -173,6 +173,19 @@
           {{ range .Site.Params.projects }}
           <div class="project-item">
             <button class="project-toggle" onclick="toggleProject(this)" aria-expanded="false">
+              {{/* Project thumbnail - first image */}}
+              {{ $thumbnailImage := "" }}
+              {{ if .images }}
+                {{ $firstImage := index .images 0 }}
+                {{ $thumbnailImage = resources.Get (printf "media/%s" $firstImage) }}
+              {{ else if .image }}
+                {{ $thumbnailImage = resources.Get (printf "media/%s" .image) }}
+              {{ end }}
+              {{ if $thumbnailImage }}
+              <div class="project-thumbnail">
+                <img src="{{ $thumbnailImage.RelPermalink }}" alt="{{ .title }}" loading="lazy">
+              </div>
+              {{ end }}
               <div class="project-header-content">
                 <span class="project-title">{{ .title }}</span>
                 {{ if .collaborator }}<span class="project-collaborator-subtitle">Collaboration with {{ .collaborator | markdownify }}</span>{{ end }}
