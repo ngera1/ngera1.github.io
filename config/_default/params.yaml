@@ -74,6 +74,8 @@ hobbies:
 
 # News section
 news:
+  - date: "2026-04-27"
+    text: "Excited to attend [NYU Vision Day](https://cs.nyu.edu/~fouhey/NYCVision2026/), an invite-only workshop!"
   - date: "2025-11-24"
     text: "Honored to be in the [Cornell Spotlight](https://gradschool.cornell.edu/spotlights/student-spotlight-nora-gera/)"
   - date: "2025-11-10"

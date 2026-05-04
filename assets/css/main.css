@@ -767,6 +767,48 @@ h1, h2, h3, h4, h5, h6 {
   padding-left: 0.5rem;
 }
 
+.news-more {
+  margin-top: 0.5rem;
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 1rem;
+  /* Scrollbar styling */
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+
+.news-more::-webkit-scrollbar {
+  width: 6px;
+}
+
+.news-more::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 10px;
+}
+
+.news-toggle-btn {
+  margin-top: 1.5rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.6rem 1.5rem;
+  background: var(--bg-color);
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.news-toggle-btn:hover {
+  background: var(--accent-color);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .news-date {
   font-weight: 600;
   color: var(--accent-color);
