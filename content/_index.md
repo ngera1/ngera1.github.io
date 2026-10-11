@@ -4,7 +4,7 @@ date: 2024-01-01
 ---
 
 
-Hi! I'm Nora, a second-year CS PhD student at Cornell University. When I enrolled at Cornell as a 15-year-old undergrad, I immediately felt a connection to the way we build machine systems that interact with the world, and I’ve been working in this area ever since. 
+Hi! I'm Nora, a third-year CS PhD student at Cornell University, grateful to be advised by Prof. [Kristina Monakhova](https://kristinamonakhova.com/kristina/). I'm interested in interpretable uncertainty quantification for machine learning methods in medicine and microscopy. When I enrolled at Cornell as a 15-year-old undergrad, I immediately felt a connection to the way we build machine systems that interact with the world, and I’ve been working in this area ever since.
 
 My research interests are at the intersection of statistics and computational imaging. Specifically, I'm interested in improving the interpretability of model uncertainty estimates and solving inverse problems across domains.
 
