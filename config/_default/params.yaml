@@ -74,6 +74,8 @@ hobbies:
 
 # News section
 news:
+  - date: "2026-10-20"
+    text: "Excited to present my poster on uncertainty quantification for physics-based MRI reconstruction models at the [i2i Workshop](https://cai2r.net/training/i2i-workshop/) at NYU Langone Health!"
   - date: "2026-07-07"
     text: "Excited to attend [ICCP](https://iccp2026.iccp-conference.org/) Summer School and Conference. See you at Princeton!"
   - date: "2026-04-27"
@@ -92,8 +94,12 @@ publications:
     year: "2025"
     doi: "https://www.science.org/doi/10.1126/sciadv.adx5829"
 
-# Projects section (dropdowns in about section)
+# Projects section (dropdowns in about section). The first 3 show; the rest are behind "Show More".
+# `page` links an entry to a project page (content/<page>/index.md) and reuses its title,
+# description and teaser for any field left out here. The entry stays hidden while that page is a draft.
 projects:
+  - page: "/mr-phicc"
+    # collaborator: "Prof. [Name](https://...)"
   - title: "Creating a new statistical test for racial bias"
     collaborator: "Prof. [Emma Pierson](https://people.eecs.berkeley.edu/~emmapierson/)"
     description: "We developed a new test for racial bias using perceived race and multiple observations of the same person. Tests for racial bias typically compare different individuals, making it hard to isolate race as the cause of different treatment. Perceived identity traits, like race, can vary per interaction, so our approach examines whether a person is treated differently depending on their perceived race. Applying this to police traffic stops across three states, we find drivers perceived as Hispanic are more likely to be searched or arrested than when perceived as white. Beyond assessing racial bias, this test can apply to other perceived-identity analyses. Paper [published in Science Advances](https://www.science.org/doi/10.1126/sciadv.adx5829) and highlighted in the [Cornell Spotlight](https://gradschool.cornell.edu/spotlights/student-spotlight-nora-gera/)."

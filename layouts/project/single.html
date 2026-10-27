@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+{{/* Standalone project page in the style of the Nerfies template (https://nerfies.github.io).
+     Used by any content page with `type: project`; see content/mr-phicc/index.md. */}}
+<html lang="{{ site.LanguageCode | default "en" }}" class="is-continuous-mode">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ .Title }}</title>
+  <meta name="description" content="{{ .Description }}">
+  {{ with .Params.keywords }}<meta name="keywords" content="{{ delimit . ", " }}">{{ end }}
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ .Title }}">
+  <meta property="og:description" content="{{ .Description }}">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ .Title }}">
+  <meta name="twitter:description" content="{{ .Description }}">
+
+  <link rel="icon" type="image/png" href="{{ "favicon.png" | relURL }}">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css">
+  {{ $css := resources.Get "css/project.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+  {{ if .Params.math }}{{ partial "math.html" . }}{{ end }}
+</head>
+<body class="project-page-body is-continuous-mode">
+
+<a href="{{ "/" | relURL }}" class="project-floating-back" aria-label="Back" title="Back">
+  <i class="fas fa-arrow-left"></i>
+  <span>Back</span>
+</a>
+
+<button id="projectViewToggle" class="project-view-toggle" aria-label="Toggle layout view" title="Switch to card slider view">
+  <i class="fas fa-layer-group"></i>
+  <span class="toggle-text">Card View</span>
+</button>
+
+<nav class="project-card-nav" id="projectCardNav" aria-label="Section navigation"></nav>
+
+<div class="project-slider-wrapper">
+  <main class="project-slider-track" id="projectSliderTrack">
+
+    <section class="project-snap-card hero publication-header" id="overview" data-card-title="Overview">
+      <div class="project-card">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">{{ .Title }}</h1>
+
+              {{ with .Params.authors }}
+              <div class="is-size-5 publication-authors">
+                {{ $last := sub (len .) 1 }}
+                {{ range $i, $author := . }}
+                <span class="author-block">
+                  {{- if .url }}<a href="{{ .url }}">{{ .name }}</a>{{ else }}{{ .name }}{{ end -}}
+                  {{- if or .affiliations .equal }}<sup>{{ delimit (.affiliations | default slice) "," }}{{ if .equal }}*{{ end }}</sup>{{ end -}}
+                  {{- if lt $i $last }},{{ end -}}
+                </span>
+                {{ end }}
+              </div>
+              {{ end }}
+
+              {{ with .Params.affiliations }}
+              <div class="is-size-5 publication-authors publication-affiliations">
+                {{ $last := sub (len .) 1 }}
+                {{ range $i, $affiliation := . }}
+                <span class="author-block"><sup>{{ add $i 1 }}</sup>{{ $affiliation }}{{ if lt $i $last }},{{ end }}</span>
+                {{ end }}
+              </div>
+              {{ end }}
+
+              {{ if where (.Params.authors | default slice) "equal" true }}
+              <div class="is-size-6 publication-note"><sup>*</sup>Equal contribution</div>
+              {{ end }}
+
+              {{ with .Params.venue }}
+              <div class="is-size-5 publication-venue">{{ . | markdownify }}</div>
+              {{ end }}
+
+              {{ with .Params.links }}
+              <div class="publication-links">
+                {{ range . }}
+                {{ $url := .url }}
+                {{ $res := and $url ($.Resources.Get $url) }}
+                {{ if $res }}
+                {{ $url = $res.RelPermalink }}
+                {{ else if and $url (not (strings.Contains $url ":")) (not (strings.HasPrefix $url "/")) }}
+                {{ warnf "%s: link %q not found; add it next to index.md" $.File.Path $url }}
+                {{ end }}
+                <span class="link-block">
+                  {{ if $url }}
+                  <a href="{{ $url }}" class="external-link button is-normal is-rounded is-dark">
+                  {{ else }}
+                  <a class="external-link button is-normal is-rounded is-dark" disabled title="Coming soon">
+                  {{ end }}
+                    {{ with .icon }}<span class="icon"><i class="{{ . }}"></i></span>{{ end }}
+                    <span>{{ .name }}{{ if not $url }} (soon){{ end }}</span>
+                  </a>
+                </span>
+                {{ end }}
+              </div>
+              {{ end }}
+
+              {{ with .Params.teaser }}
+              <div class="publication-teaser-wrapper">
+                {{ partial "project-figure.html" (dict "page" $ "src" .src "alt" .alt "caption" ($.RenderString (.caption | default "")) "eager" true) }}
+              </div>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {{ .Content }}
+
+    {{ with .Params.bibtex }}
+    <section class="project-snap-card section" id="BibTeX" data-card-title="BibTeX">
+      <div class="project-card">
+        <div class="container is-max-desktop content">
+          <h2 class="title is-3 has-text-centered">BibTeX</h2>
+          <pre><code>{{ . | strings.TrimSpace }}</code></pre>
+        </div>
+      </div>
+    </section>
+    {{ end }}
+
+    <footer class="project-snap-card footer project-footer" id="footer" data-card-title="Footer">
+      <div class="project-card project-card-compact">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column is-8">
+              <div class="content has-text-centered">
+                <p>
+                  <a href="{{ "/" | relURL }}">&larr; Back to Nora Gera's homepage</a>
+                </p>
+                <p>
+                  This page is adapted from the <a href="https://nerfies.github.io/">Nerfies</a> project page template.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  (function() {
+    const track = document.getElementById('projectSliderTrack');
+    const cards = Array.from(document.querySelectorAll('.project-snap-card'));
+    const nav = document.getElementById('projectCardNav');
+    const toggleBtn = document.getElementById('projectViewToggle');
+    if (!track || !cards.length) return;
+
+    let currentIndex = 0;
+    let isLocked = false;
+    let lockTimer = null;
+    let isContinuousMode = localStorage.getItem('project_view_mode') !== 'cards';
+
+    // Build side dot navigation
+    if (nav) {
+      cards.forEach((card, index) => {
+        const id = card.id || ('card-' + index);
+        const title = card.getAttribute('data-card-title') || ('Section ' + (index + 1));
+        
+        const link = document.createElement('a');
+        link.href = '#' + id;
+        link.className = 'project-nav-item';
+        link.setAttribute('aria-label', title);
+
+        const label = document.createElement('span');
+        label.className = 'project-nav-label';
+        label.textContent = title;
+
+        const dot = document.createElement('span');
+        dot.className = 'project-nav-dot' + (index === 0 ? ' is-active' : '');
+
+        link.appendChild(label);
+        link.appendChild(dot);
+
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (isContinuousMode) {
+            card.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            goToSlide(index);
+          }
+        });
+
+        nav.appendChild(link);
+      });
+    }
+
+    const navItems = nav ? Array.from(nav.querySelectorAll('.project-nav-item')) : [];
+
+    function updateNav(index) {
+      navItems.forEach((item, i) => {
+        const dot = item.querySelector('.project-nav-dot');
+        if (dot) dot.classList.toggle('is-active', i === index);
+      });
+    }
+
+    function isDesktop() {
+      return window.innerWidth > 768;
+    }
+
+    function goToSlide(index, immediate = false) {
+      const clamped = Math.max(0, Math.min(cards.length - 1, index));
+      currentIndex = clamped;
+
+      if (!isContinuousMode && isDesktop()) {
+        if (immediate) {
+          track.style.transition = 'none';
+          track.style.transform = `translate3d(0, -${clamped * 100}vh, 0)`;
+          track.offsetHeight;
+          track.style.transition = '';
+        } else {
+          track.style.transform = `translate3d(0, -${clamped * 100}vh, 0)`;
+        }
+      } else {
+        cards[clamped].scrollIntoView({ behavior: immediate ? 'auto' : 'smooth' });
+      }
+
+      updateNav(clamped);
+
+      if (cards[clamped].id) {
+        history.replaceState(null, null, '#' + cards[clamped].id);
+      }
+
+      if (!immediate) {
+        isLocked = true;
+        clearTimeout(lockTimer);
+        lockTimer = setTimeout(() => {
+          isLocked = false;
+        }, 750);
+      }
+    }
+
+    function applyMode(continuous, targetIdx = currentIndex) {
+      isContinuousMode = continuous;
+      document.body.classList.toggle('is-continuous-mode', continuous);
+      document.documentElement.classList.toggle('is-continuous-mode', continuous);
+
+      if (toggleBtn) {
+        if (continuous) {
+          toggleBtn.innerHTML = '<i class="fas fa-layer-group"></i><span class="toggle-text">Card View</span>';
+          toggleBtn.title = "Switch to card slider view";
+        } else {
+          toggleBtn.innerHTML = '<i class="fas fa-scroll"></i><span class="toggle-text">Continuous View</span>';
+          toggleBtn.title = "Switch to continuous scroll view";
+        }
+      }
+
+      if (continuous) {
+        track.style.transform = 'none';
+        track.style.transition = 'none';
+        if (cards[targetIdx]) {
+          setTimeout(() => {
+            cards[targetIdx].scrollIntoView({ behavior: 'auto' });
+          }, 30);
+        }
+      } else {
+        goToSlide(targetIdx, true);
+      }
+
+      localStorage.setItem('project_view_mode', continuous ? 'continuous' : 'cards');
+    }
+
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        if (isContinuousMode) {
+          let closestIndex = 0;
+          let minDistance = Infinity;
+          cards.forEach((card, idx) => {
+            const rect = card.getBoundingClientRect();
+            const dist = Math.abs(rect.top);
+            if (dist < minDistance) {
+              minDistance = dist;
+              closestIndex = idx;
+            }
+          });
+          applyMode(false, closestIndex);
+        } else {
+          applyMode(true, currentIndex);
+        }
+      });
+    }
+
+    // Wheel handling with inertia lock & boundary clamping
+    window.addEventListener('wheel', (e) => {
+      if (!isDesktop() || isContinuousMode) return;
+
+      e.preventDefault();
+
+      if (isLocked) return;
+      if (Math.abs(e.deltaY) < 16) return;
+
+      if (e.deltaY > 0) {
+        if (currentIndex < cards.length - 1) {
+          goToSlide(currentIndex + 1);
+        }
+      } else if (e.deltaY < 0) {
+        if (currentIndex > 0) {
+          goToSlide(currentIndex - 1);
+        }
+      }
+    }, { passive: false });
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (!isDesktop() || isContinuousMode) return;
+
+      if (['ArrowDown', 'PageDown', ' '].includes(e.key)) {
+        if (currentIndex < cards.length - 1) {
+          e.preventDefault();
+          goToSlide(currentIndex + 1);
+        }
+      } else if (['ArrowUp', 'PageUp'].includes(e.key)) {
+        if (currentIndex > 0) {
+          e.preventDefault();
+          goToSlide(currentIndex - 1);
+        }
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        goToSlide(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        goToSlide(cards.length - 1);
+      }
+    });
+
+    // Touch swipe handling on touch devices
+    let touchStartY = 0;
+    window.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        touchStartY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', (e) => {
+      if (!isDesktop() || isLocked || isContinuousMode) return;
+      if (e.changedTouches.length === 1) {
+        const touchEndY = e.changedTouches[0].clientY;
+        const diff = touchStartY - touchEndY;
+        if (Math.abs(diff) > 40) {
+          if (diff > 0 && currentIndex < cards.length - 1) {
+            goToSlide(currentIndex + 1);
+          } else if (diff < 0 && currentIndex > 0) {
+            goToSlide(currentIndex - 1);
+          }
+        }
+      }
+    }, { passive: true });
+
+    // In continuous mode, update active dot with IntersectionObserver
+    const observer = new IntersectionObserver((entries) => {
+      if (!isContinuousMode) return;
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = cards.indexOf(entry.target);
+          if (index !== -1) updateNav(index);
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.35
+    });
+    cards.forEach((card) => observer.observe(card));
+
+    // Initial mode and hash
+    let initIdx = 0;
+    if (window.location.hash) {
+      const targetId = window.location.hash.substring(1);
+      const targetIdx = cards.findIndex(c => c.id === targetId);
+      if (targetIdx !== -1) initIdx = targetIdx;
+    }
+
+    if (isContinuousMode) {
+      applyMode(true, initIdx);
+    } else {
+      goToSlide(initIdx, true);
+    }
+
+    // Reset layout on window resize
+    window.addEventListener('resize', () => {
+      if (!isContinuousMode) {
+        goToSlide(currentIndex, true);
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+{{ define "main" }}
+{{ partial "navbar.html" . }}
+
+<main class="page-main">
+  <article class="container blog-container post">
+    <header class="post-header">
+      <a class="post-back" href="{{ .Parent.RelPermalink }}">&larr; All posts</a>
+      <h1 class="post-title">{{ .Title }}</h1>
+      <div class="post-meta">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+        &middot; {{ .ReadingTime }} min read
+      </div>
+    </header>
+    <div class="post-content">
+      {{ .Content }}
+    </div>
+  </article>
+</main>
+
+{{ partial "footer.html" . }}
+{{ end }}

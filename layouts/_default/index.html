@@ -1,40 +1,5 @@
 {{ define "main" }}
-<nav class="navbar">
-  <div class="nav-container">
-    <a href="#about" class="nav-brand">
-      <span class="nav-title-full">Nora Gera</span>
-      <span class="nav-title-short">NG</span>
-      <span class="nav-title-suffix"> (PhD Student)</span>
-    </a>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#news">News</a>
-      <a href="#publications">Publications</a>
-      {{ if .Site.Params.darkMode.enable }}
-      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-        <svg class="theme-icon theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <circle cx="12" cy="12" r="5"></circle>
-          <line x1="12" y1="1" x2="12" y2="3"></line>
-          <line x1="12" y1="21" x2="12" y2="23"></line>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-          <line x1="1" y1="12" x2="3" y2="12"></line>
-          <line x1="21" y1="12" x2="23" y2="12"></line>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-        </svg>
-        <svg class="theme-icon theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-      </button>
-      {{ end }}
-    </div>
-  </div>
-</nav>
+{{ partial "navbar.html" . }}
 
 <main class="single-page">
   <section id="about" class="section about-section">
@@ -186,60 +151,22 @@
         </div>
         {{ end }}
 
-        {{/* Projects section with dropdowns */}}
-        {{ if .Site.Params.projects }}
+        {{/* Projects section with dropdowns: the first 3 are shown, the rest sit behind "Show More".
+             Entries linked to a project page are skipped while that page is still a draft. */}}
+        {{ $projects := slice }}
+        {{ range .Site.Params.projects }}
+        {{ if or (not .page) (site.GetPage .page) }}{{ $projects = $projects | append . }}{{ end }}
+        {{ end }}
+        {{ if $projects }}
         <h3 class="project-title">Past Research & Work</h3>
         <div class="projects-section">
-          {{ range .Site.Params.projects }}
-          <div class="project-item">
-            <button class="project-toggle" onclick="toggleProject(this)" aria-expanded="false">
-              {{/* Project thumbnail - first image */}}
-              {{ $thumbnailImage := "" }}
-              {{ if .images }}
-              {{ $firstImage := index .images 0 }}
-              {{ $thumbnailImage = resources.Get (printf "media/%s" $firstImage) }}
-              {{ else if .image }}
-              {{ $thumbnailImage = resources.Get (printf "media/%s" .image) }}
-              {{ end }}
-              {{ if $thumbnailImage }}
-              <div class="project-thumbnail">
-                <img src="{{ $thumbnailImage.RelPermalink }}" alt="{{ .title }}" loading="lazy">
-              </div>
-              {{ end }}
-              <div class="project-header-content">
-                <span class="project-title">{{ .title }}</span>
-                {{ if .collaborator }}<span class="project-collaborator-subtitle">Collaboration with {{ .collaborator |
-                  markdownify }}</span>{{ end }}
-              </div>
-              <span class="project-arrow">▼</span>
-            </button>
-            <div class="project-content" style="display: none;">
-              {{ $projectTitle := .title }}
-              {{ if .description }}<p class="project-description">{{ .description | markdownify }}</p>{{ end }}
-              {{ if .images }}
-              <div class="project-images">
-                {{ range .images }}
-                {{ $projectImage := resources.Get (printf "media/%s" .) }}
-                {{ if $projectImage }}
-                <div class="project-image">
-                  <img src="{{ $projectImage.RelPermalink }}" alt="{{ $projectTitle }}" loading="lazy">
-                </div>
-                {{ end }}
-                {{ end }}
-              </div>
-              {{ else if .image }}
-              {{/* Support legacy single image field for backwards compatibility */}}
-              {{ $projectImage := resources.Get (printf "media/%s" .image) }}
-              {{ if $projectImage }}
-              <div class="project-images">
-                <div class="project-image">
-                  <img src="{{ $projectImage.RelPermalink }}" alt="{{ .title }}" loading="lazy">
-                </div>
-              </div>
-              {{ end }}
-              {{ end }}
-            </div>
+          {{ range first 3 $projects }}{{ partial "project-item.html" . }}{{ end }}
+          {{ if gt (len $projects) 3 }}
+          <div id="projects-more" class="projects-more" style="display: none;">
+            {{ range after 3 $projects }}{{ partial "project-item.html" . }}{{ end }}
           </div>
+          <button id="projects-toggle" class="projects-toggle-btn" onclick="toggleProjects()" aria-expanded="false"
+            aria-controls="projects-more">Show More</button>
           {{ end }}
         </div>
         {{ end }}
@@ -332,12 +259,17 @@
         btn.textContent = 'Show More';
       }
     }
+
+    function toggleProjects() {
+      const moreProjects = document.getElementById('projects-more');
+      const btn = document.getElementById('projects-toggle');
+      const expand = moreProjects.style.display === 'none';
+      moreProjects.style.display = expand ? 'block' : 'none';
+      btn.textContent = expand ? 'Show Less' : 'Show More';
+      btn.setAttribute('aria-expanded', expand);
+    }
   </script>
 </main>
 
-<footer class="footer">
-  <div class="container">
-    <p>&copy; {{ now.Year }} Nora Gera. All rights reserved.</p>
-  </div>
-</footer>
+{{ partial "footer.html" . }}
 {{ end }}

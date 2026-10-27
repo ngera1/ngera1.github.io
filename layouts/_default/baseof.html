@@ -18,7 +18,9 @@
   
   {{ $css := resources.Get "css/main.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}">
-  
+
+  {{ if .Params.math }}{{ partial "math.html" . }}{{ end }}
+
   {{ if .Site.Params.darkMode.enable }}
   <script>
     (function() {

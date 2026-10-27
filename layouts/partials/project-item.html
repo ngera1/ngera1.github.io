@@ -1,0 +1,53 @@
+{{/* One dropdown in "Past Research & Work". Context: an entry from params.yaml `projects`.
+     An entry with `page` links to that project page and falls back to its title,
+     description and teaser image for anything the entry doesn't set. */}}
+{{ $title := .title }}
+{{ $description := .description }}
+{{ $pageURL := "" }}
+
+{{ $images := slice }}
+{{ if .images }}
+{{ range .images }}{{ with resources.Get (printf "media/%s" .) }}{{ $images = $images | append . }}{{ end }}{{ end }}
+{{ else if .image }}
+{{/* Support legacy single image field for backwards compatibility */}}
+{{ with resources.Get (printf "media/%s" .image) }}{{ $images = $images | append . }}{{ end }}
+{{ end }}
+
+{{ with and .page (site.GetPage .page) }}
+{{ $title = $title | default .Title }}
+{{ $description = $description | default .Description }}
+{{ $pageURL = .RelPermalink }}
+{{ if not $images }}
+{{ with and .Params.teaser (.Resources.Get .Params.teaser.src) }}{{ $images = $images | append . }}{{ end }}
+{{ end }}
+{{ end }}
+
+<div class="project-item">
+  <button class="project-toggle" onclick="toggleProject(this)" aria-expanded="false">
+    {{/* Project thumbnail - first image */}}
+    {{ if $images }}
+    <div class="project-thumbnail">
+      <img src="{{ (index $images 0).RelPermalink }}" alt="{{ $title }}" loading="lazy">
+    </div>
+    {{ end }}
+    <div class="project-header-content">
+      <span class="project-title">{{ $title }}</span>
+      {{ if .collaborator }}<span class="project-collaborator-subtitle">Collaboration with {{ .collaborator |
+        markdownify }}</span>{{ end }}
+    </div>
+    <span class="project-arrow">▼</span>
+  </button>
+  <div class="project-content" style="display: none;">
+    {{ if $description }}<p class="project-description">{{ $description | markdownify }}</p>{{ end }}
+    {{ with $pageURL }}<a class="project-page-link" href="{{ . }}">View project page &rarr;</a>{{ end }}
+    {{ if $images }}
+    <div class="project-images">
+      {{ range $images }}
+      <div class="project-image">
+        <img src="{{ .RelPermalink }}" alt="{{ $title }}" loading="lazy">
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+</div>

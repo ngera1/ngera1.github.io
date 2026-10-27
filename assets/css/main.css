@@ -618,6 +618,23 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.05rem;
 }
 
+.project-page-link {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  color: var(--accent-color);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.project-page-link:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+.projects-more {
+  animation: slideDown 0.3s ease-out;
+}
+
 .project-images {
   margin-top: 1rem;
   display: flex;
@@ -786,7 +803,8 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 10px;
 }
 
-.news-toggle-btn {
+.news-toggle-btn,
+.projects-toggle-btn {
   margin-top: 1.5rem;
   display: block;
   margin-left: auto;
@@ -802,7 +820,8 @@ h1, h2, h3, h4, h5, h6 {
   font-family: inherit;
 }
 
-.news-toggle-btn:hover {
+.news-toggle-btn:hover,
+.projects-toggle-btn:hover {
   background: var(--accent-color);
   color: white;
   transform: translateY(-1px);
@@ -888,6 +907,182 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: underline;
 }
 
+/* Blog */
+.page-main {
+  margin-top: 70px;
+  padding: 3rem 0 4rem;
+  min-height: calc(100vh - 70px);
+}
+
+.blog-container {
+  max-width: 760px;
+}
+
+.blog-intro,
+.blog-empty {
+  text-align: center;
+  color: var(--text-color-light);
+  margin-bottom: 2rem;
+}
+
+.post-list {
+  list-style: none;
+}
+
+.post-item {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.post-item:last-child {
+  border-bottom: none;
+}
+
+.post-date,
+.post-meta {
+  font-size: 0.9rem;
+  color: var(--text-color-light);
+}
+
+.post-item-title {
+  font-size: 1.5rem;
+  margin: 0.25rem 0 0.5rem;
+}
+
+.post-item-title a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.post-item-title a:hover {
+  color: var(--accent-color);
+}
+
+.post-summary {
+  color: var(--text-color-light);
+}
+
+.post-header {
+  margin-bottom: 2.5rem;
+}
+
+.post-back {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.post-back:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+.post-title {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+/* Long-form typography (the global reset strips default spacing) */
+.post-content {
+  font-size: 1.1rem;
+  line-height: 1.75;
+}
+
+.post-content > * + * {
+  margin-top: 1.25rem;
+}
+
+.post-content h2 {
+  font-size: 1.75rem;
+  margin-top: 2.5rem;
+}
+
+.post-content h3 {
+  font-size: 1.35rem;
+  margin-top: 2rem;
+}
+
+.post-content a {
+  color: var(--accent-color);
+}
+
+.post-content a:hover {
+  color: var(--accent-hover);
+}
+
+.post-content ul,
+.post-content ol {
+  padding-left: 1.5rem;
+}
+
+.post-content li + li {
+  margin-top: 0.4rem;
+}
+
+.post-content blockquote {
+  border-left: 3px solid var(--accent-color);
+  padding-left: 1rem;
+  color: var(--text-color-light);
+  font-style: italic;
+}
+
+.post-content code {
+  font-size: 0.9em;
+  background: var(--section-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+
+.post-content pre {
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.post-content pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.post-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+.post-content table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.post-content th,
+.post-content td {
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.post-content hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 2.5rem 0;
+}
+
+.post-content .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
 /* Footer */
 .footer {
   padding: 2rem 0;
@@ -939,6 +1134,18 @@ h1, h2, h3, h4, h5, h6 {
   .project-toggle {
     gap: 0.75rem;
     padding: 0.875rem 1rem;
+  }
+
+  .post-title {
+    font-size: 2rem;
+  }
+}
+
+/* Room for the Blog link on phones */
+@media (max-width: 480px) {
+  .nav-links {
+    gap: 0.75rem;
+    font-size: 0.95rem;
   }
 }
 

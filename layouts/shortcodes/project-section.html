@@ -1,0 +1,25 @@
+{{/* A titled section of a project page. Use the % form so the body is rendered as Markdown:
+     {{% project-section title="Method" %}}
+     Markdown here...
+     {{% /project-section %}}
+     Tags stay unindented and the blank lines around .Inner stay, so Markdown treats the
+     wrapper as raw HTML and the body as Markdown. */}}
+{{- $title := .Get "title" -}}
+{{- $id := .Get "id" | default (anchorize $title) -}}
+<section class="project-snap-card section" id="{{ $id }}" data-card-title="{{ $title }}">
+<div class="project-card">
+<div class="container is-max-desktop">
+<div class="columns is-centered">
+<div class="column is-four-fifths">
+<h2 class="title is-3 has-text-centered">{{ $title }}</h2>
+<div class="content has-text-justified">
+
+{{ .Inner }}
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+

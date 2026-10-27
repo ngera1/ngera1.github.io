@@ -40,5 +40,12 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+    # Leave LaTeX untouched by markdown so KaTeX can render it (pages with `math: true`)
+    extensions:
+      passthrough:
+        enable: true
+        delimiters:
+          block: [['\[', '\]'], ['$$', '$$']]
+          inline: [['\(', '\)'], ['$', '$']]
 minify:
   _merge: deep

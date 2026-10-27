@@ -1,0 +1,6 @@
+{{/* Usage (caption is optional Markdown between the tags; self-close with /> when there is none):
+     {{< project-figure src="method.png" alt="Pipeline diagram" >}}
+     **Method overview.** What the reader should notice.
+     {{< /project-figure >}} */}}
+{{- $caption := .Get "caption" | default (strings.TrimSpace .Inner) -}}
+{{- partial "project-figure.html" (dict "page" .Page "src" (.Get "src") "alt" (.Get "alt") "caption" (.Page.RenderString $caption)) -}}

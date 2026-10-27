@@ -1,0 +1,27 @@
+{{ define "main" }}
+{{ partial "navbar.html" . }}
+
+<main class="page-main">
+  <div class="container blog-container">
+    <h1 class="section-title">{{ .Title }}</h1>
+    {{ with .Content }}<div class="blog-intro">{{ . }}</div>{{ end }}
+
+    {{ $posts := .Pages.ByDate.Reverse }}
+    {{ if $posts }}
+    <ul class="post-list">
+      {{ range $posts }}
+      <li class="post-item">
+        <time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+        <h2 class="post-item-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        <p class="post-summary">{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | htmlUnescape }}{{ end }}</p>
+      </li>
+      {{ end }}
+    </ul>
+    {{ else }}
+    <p class="blog-empty">No posts yet. Check back soon!</p>
+    {{ end }}
+  </div>
+</main>
+
+{{ partial "footer.html" . }}
+{{ end }}

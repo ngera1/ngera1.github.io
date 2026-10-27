@@ -1,0 +1,23 @@
+{{/* A figure (image or video) from the page bundle, with an optional caption.
+     Args: page, src, alt, caption (rendered HTML), eager (bool, for above-the-fold media).
+     A missing file renders a labelled placeholder and logs a build warning. */}}
+{{ $page := .page }}
+{{ $res := $page.Resources.Get .src }}
+<figure class="publication-figure">
+  {{- if $res }}
+  {{- if eq $res.MediaType.MainType "video" }}
+  <video class="publication-video" src="{{ $res.RelPermalink }}" autoplay muted loop playsinline
+    {{- with .alt }} aria-label="{{ . }}"{{ end }}></video>
+  {{- else }}
+  <img src="{{ $res.RelPermalink }}" alt="{{ .alt }}"
+    {{- if in (slice "png" "jpeg" "gif" "webp") $res.MediaType.SubType }} width="{{ $res.Width }}" height="{{ $res.Height }}"{{ end }}
+    {{- if .eager }} fetchpriority="high"{{ else }} loading="lazy" decoding="async"{{ end }}>
+  {{- end }}
+  {{- else }}
+  {{- warnf "%s: figure %q not found; add it next to index.md" $page.File.Path .src }}
+  <div class="figure-placeholder">Add <code>{{ .src }}</code> to <code>content/{{ $page.File.Dir }}</code></div>
+  {{- end }}
+  {{- with .caption }}
+  <figcaption>{{ . }}</figcaption>
+  {{- end }}
+</figure>
